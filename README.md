@@ -1,4 +1,4 @@
-Lưu ý: Nội dung dưới đây là AI-Generated
+**Lưu ý: Nội dung dưới đây là AI-Generated**
 
 ---
 
@@ -51,9 +51,9 @@ python-dotenv: Giúp chương trình đọc Key bí mật từ file ẩn.
 ### 2️⃣ Cấu hình bí mật
 Vì lý do bảo mật, file chứa API Key không được upload lên GitHub. Bạn cần:
 
-Copy file `.env.example` và đổi tên thành `.env`.
+* Copy file `.env.example` và đổi tên thành `.env`.
 
-Mở file .env và dán API Key của bạn vào:
+* Mở file .env và dán API Key của bạn vào:
 ```Plaintext
 GEMINI_API_KEY=Dán_Key_Của_Bạn_Ở_Đây
 ```
@@ -68,10 +68,14 @@ python brain.py
 
 ## 🗺️ Lộ trình phát triển (4 Năm)
 
-[x] Năm 1: Xây dựng Logic AI & Hệ thống lệnh cơ bản.
+- [x] Năm 1: Xây dựng Logic AI & Hệ thống lệnh cơ bản.
 
-[ ] Năm 2: Tích hợp Giọng nói (TTS) & Hình ảnh Live2D đơn giản.
+- [ ] Năm 2: Tích hợp Giọng nói (TTS) & Hình ảnh Live2D đơn giản.
 
-[ ] Năm 3: Xây dựng RAG (Bộ nhớ dài hạn) & Tích hợp Twitch Chat.
+-  [ ] Năm 3: Xây dựng RAG (Bộ nhớ dài hạn) & Tích hợp Twitch Chat.
 
-[ ] Năm 4: Đồ án tốt nghiệp: Hoàn thiện nhân vật & Stream thực tế.
+- [ ] Năm 4: Đồ án tốt nghiệp: Hoàn thiện nhân vật & Stream thực tế.
+
+---
+
+**Cảm ơn đã đọc hết!**
