@@ -16,7 +16,7 @@
 ---
 
 ## 🌟 Tổng quan dự án
-Dự án **Fake_Neuro** là một nỗ lực nhằm tái hiện khả năng tương tác thông minh của Neuro-sama. Đây là đồ án giai đoạn Năm 1, tập trung vào việc xây dựng "Bộ não" hội thoại xử lý qua Terminal với khả năng bảo mật và quản lý bộ nhớ.
+Dự án **Fake-Neuro** là một nỗ lực nhằm tái hiện khả năng tương tác thông minh của Neuro-sama. Đây là đồ án giai đoạn Năm 1, tập trung vào việc xây dựng "Bộ não" hội thoại xử lý qua Terminal với khả năng bảo mật và quản lý bộ nhớ.
 
 ---
 
