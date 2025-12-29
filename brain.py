@@ -146,7 +146,7 @@ class VtuberBrain:
                     clean_json = re.sub(r'```json|```', '', response.text).strip()
                     data = json.loads(clean_json)
                     print(f"Not-Neuro: {response.text}")
-                    await self.voice_box.talk(self.clean_text(response.text), "default")
+                    await self.voice_box.talk(self.voice_box.clean_text(response.text), "default")
                             
                 except Exception as e:
                     return f'Lỗi: {e}'
