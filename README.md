@@ -76,7 +76,7 @@ pip install -U google-genai python-dotenv
 google-genai: SDK mới nhất để giao tiếp với bộ não AI.
 python-dotenv: Giúp chương trình đọc Key bí mật từ file ẩn.
 
-### 2️⃣ Thiết lâoj API key
+### 2️⃣ Thiết lập API key
 Vì lý do bảo mật, file chứa API Key không được upload lên GitHub. Bạn cần:
 
 * Copy file `.env.example` và đổi tên thành `.env`.
