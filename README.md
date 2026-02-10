@@ -97,10 +97,8 @@ Dưới đây là những gì mà 1 Fake-Neuro có thể làm hiện tại
 Để tránh xung đột thư viện, hãy chạy lệnh sau:
 ```bash
 # Cài đặt các thư viện cần thiết
-pip install google-genai python-dotenv pyvts edge-tts pygame numpy
+pip install google-genai python-dotenv pyvts elevenlabs pygame numpy
 ```
-google-genai: SDK mới nhất để giao tiếp với bộ não AI.
-python-dotenv: Giúp chương trình đọc Key bí mật từ file ẩn.
 
 ### Thiết lập API key
 Vì lý do bảo mật, file chứa API Key không được upload lên GitHub. Bạn cần:
@@ -110,6 +108,8 @@ Vì lý do bảo mật, file chứa API Key không được upload lên GitHub. 
 * Mở file .env và dán API Key của bạn vào:
 ```Plaintext
 GEMINI_API_KEY=Dán_Key_Của_Bạn_Ở_Đây
+ELEVENLABS_API_KEY=Dán_Key_Của_Bạn_Ở_Đây
+ELEVENLABS_VOICE_ID=Dán_ID_Của_Bạn_Ở_Đây
 ```
 
 ### Xin quyền điều khiển (Chạy 1 lần duy nhất)
