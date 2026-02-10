@@ -59,7 +59,7 @@ graph TD
 ---
 
 ## Tính năng hiện có
-Dưới đây là những gì mà 1 Fake-Neuro có thể làm hiện tại
+Dưới đây là những gì mà 1 Not-Neuro có thể làm hiện tại
 
 * **Hệ thống phản hồi:** Sử dụng Gemini 2.5 Flash API (có thể sử dụng các model version khác).
 
