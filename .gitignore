@@ -2,4 +2,11 @@
 .venv/
 __pycache__/
 memory.json
-speech.mp3
+character_background.txt
+check_names.py
+test_client.py
+vts_token.txt
+*.mp3
+index.html
+.agent
+old_brain.py
