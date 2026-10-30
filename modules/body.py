@@ -2,10 +2,11 @@ import os
 import asyncio
 import pyvts
 import random
+from paths import PROJECT_ROOT
 
 class VtuberBody:
     def __init__(self):
-        self.token_path = os.path.abspath("vts_token.txt")
+        self.token_path = str(PROJECT_ROOT / "vts_token.txt")
         self.plugin_info = {
             "plugin_name": "Not-Neuro-Brain",
             "developer": "Mahirou",

@@ -1,7 +1,7 @@
 import os
 from google import genai
 from google.genai import types
-from llm_base import BaseLLM
+from .llm_base import BaseLLM
 
 class GeminiClient(BaseLLM):
     def __init__(self):

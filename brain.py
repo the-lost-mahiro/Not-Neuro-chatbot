@@ -1,17 +1,17 @@
-import os
 import json
 import time
 import asyncio
 import re
 
-from llm_gemini import GeminiClient
-from llm_ollama import OllamaClient
+from llm_core.llm_gemini import GeminiClient
+from llm_core.llm_ollama import OllamaClient
 
-from mood import VtuberMood
-from body import VtuberBody
-from voice import VtuberVoice
-from ear import VtuberEar
-from chat_reader import VtuberChat
+from modules.mood import VtuberMood
+from modules.body import VtuberBody
+from modules.voice import VtuberVoice
+from modules.ear import VtuberEar
+from modules.chat_reader import VtuberChat
+from paths import PROJECT_ROOT
 
 class VtuberBrain:
     def __init__(self, local_ai=False):
@@ -22,10 +22,10 @@ class VtuberBrain:
             self.llm = GeminiClient()
             print("☁️ Đang dùng AI Cloud (Gemini)")
 
-        self.history_file = 'memory.json'
+        self.history_file = PROJECT_ROOT / 'memory.json'
         self.history = self._load_memory() # Tải lại ký ức khi khởi động
 
-        with open("character_background.txt", "r", encoding="utf-8") as f: # Mở file background
+        with open(PROJECT_ROOT / "character_background.txt", "r", encoding="utf-8") as f: # Mở file background
                 self.system_instruction_content = f.read().strip()
 
         self.last_interaction_time = time.time() # Lần cuối tương tác

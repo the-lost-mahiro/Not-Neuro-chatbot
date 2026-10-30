@@ -1,11 +1,12 @@
 import asyncio
 import pyvts
+from paths import PROJECT_ROOT
 
 # Thông tin định danh của bot bạn
 plugin_info = {
     "plugin_name": "Not-Neuro-Brain",
     "developer": "Mahirou",
-    "authentication_token_path": "vts_token.txt" # Nơi lưu chìa khóa
+    "authentication_token_path": str(PROJECT_ROOT / "vts_token.txt") # Nơi lưu chìa khóa
 }
 
 async def authenticate():

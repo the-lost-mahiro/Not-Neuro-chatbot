@@ -6,6 +6,7 @@ import re
 import edge_tts
 from elevenlabs.client import ElevenLabs
 from elevenlabs import VoiceSettings
+from paths import PROJECT_ROOT
 
 class VtuberVoice:
     def __init__(self):
@@ -38,7 +39,7 @@ class VtuberVoice:
         #     return False
         
         try:
-            self.audio_file = f"speech_{uuid.uuid4().hex}.mp3"
+            self.audio_file = str(PROJECT_ROOT / f"speech_{uuid.uuid4().hex}.mp3")
             communicate = edge_tts.Communicate(
                 text=text, 
                 voice=self.voice_name, 

@@ -106,7 +106,7 @@ Dưới đây là những gì mà 1 Not-Neuro có thể làm hiện tại
 Để tránh xung đột thư viện, hãy chạy lệnh sau:
 ```bash
 # Cài đặt các thư viện cần thiết
-pip install google-genai python-dotenv pyvts elevenlabs pygame numpy
+python -m pip install -r requirements.txt
 ```
 
 ### Thiết lập API key
@@ -121,34 +121,79 @@ ELEVENLABS_API_KEY=Dán_Key_Của_Bạn_Ở_Đây
 ELEVENLABS_VOICE_ID=Dán_ID_Của_Bạn_Ở_Đây
 ```
 
+* Tạo `character_background.txt` tại thư mục gốc để viết prompt tính cách nhân vật. File này, `.env`, `memory.json` và `vts_token.txt` là dữ liệu cá nhân, không đưa lên Git.
+
 ### Xin quyền điều khiển (Chạy 1 lần duy nhất)
 Lần đầu tiên chạy, bạn cần xin phép VTube Studio:
 
 ```Bash
-python vts_auth.py
+python -m modules.vts_auth
 ```
 Nhìn vào màn hình VTube Studio và bấm "Allow". Sau khi xong, file vts_token.txt sẽ được tạo ra.
 
 ### Khởi chạy chương trình
 Sau khi cài đặt xong, bạn chỉ cần gõ:
 ```Bash
-python brain.py
+python main.py
 ```
+
+Chạy các lệnh từ thư mục gốc dự án. `main.py` hiện dùng Ollama với model `qwen3:8b`; cần chạy Ollama và có sẵn model này. Để dùng Gemini, đổi thành `VtuberBrain(local_ai=False)` trong `main.py` và thiết lập `GEMINI_API_KEY`.
+
+### API và giao diện web (tùy chọn)
+
+```bash
+python -m web.app
+```
+
+Lệnh này chạy Flask tại cổng 5000 và mở `web/index.html` trong trình duyệt. Web dùng Gemini và đọc `.env` ở thư mục gốc. API `POST /chat` nhận JSON `{"message": "Xin chào"}`; phản hồi hiện chỉ có trường `status`, còn lời nói và nội dung được xử lý bởi `brain.py`. Giao diện HTML là bản thử nghiệm, vẫn chờ các trường `display_text` và `mood_bar` mà API chưa trả về.
+
+Để gửi một yêu cầu thử, mở terminal thứ hai tại thư mục gốc:
+
+```bash
+python -m tests.test_client
+```
+
+Đây là client kiểm tra thủ công, cần server và các dịch vụ liên quan đang chạy. Import file hoặc chạy test discovery sẽ không tự gửi yêu cầu HTTP.
 
 ## Cấu trúc thư mục
 
 ```
 Not-Neuro-chatbot/
-├── main.py             # main
-├── brain.py            # Bộ não (Xử lý hội thoại, Autonomy)
-├── body.py             # Kết nối VTube Studio (PyVTS)
-├── voice.py            # Xử lý giọng nói (TTS)
-├── mood.py             # Hệ thống cảm xúc (Vector cảm xúc) (Edge-TTS)
-├── vts_auth.py         # Script xin Token (Setup)
-├── vts_token.txt       # Token kết nối (Tự tạo)
-├── memory.json         # Bộ nhớ ngắn hạn
-└── character_background.txt # Prompt tính cách nhân vật
+├── main.py                  # Điểm khởi chạy terminal
+├── brain.py                 # Điều phối hội thoại và Autonomy
+├── paths.py                 # Đường dẫn thư mục gốc và dữ liệu cục bộ
+├── llm_core/                # Giao tiếp với các mô hình ngôn ngữ
+│   ├── __init__.py
+│   ├── llm_base.py
+│   ├── llm_gemini.py
+│   └── llm_ollama.py
+├── modules/                 # Giác quan, giọng nói và điều khiển nhân vật
+│   ├── __init__.py
+│   ├── ear.py
+│   ├── eye.py
+│   ├── chat_reader.py
+│   ├── body.py
+│   ├── voice.py
+│   ├── mood.py
+│   └── vts_auth.py
+├── web/                     # API Flask và giao diện thử nghiệm
+│   ├── __init__.py
+│   ├── app.py
+│   └── index.html
+├── tests/
+│   ├── __init__.py
+│   └── test_client.py       # Client kiểm tra API thủ công
+├── requirements.txt
+├── .env.example
+├── .gitignore
+├── README.md
+├── .env                     # API key (cục bộ)
+├── vts_token.txt            # Token kết nối (tự tạo, cục bộ)
+├── memory.json              # Bộ nhớ ngắn hạn (tự tạo, cục bộ)
+└── character_background.txt # Prompt tính cách nhân vật (cục bộ)
 ```
+
+Các thư mục Python có `__init__.py`; dùng `python -m ...` cho script bên trong package. Đường dẫn tới dữ liệu cục bộ được tính từ `paths.py`, không phụ thuộc thư mục làm việc. `.idea/` và các file sinh ra khi chạy chương trình được bỏ qua trong `.gitignore`.
 
 ---
 

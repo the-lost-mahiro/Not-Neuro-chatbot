@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat với Not-Neuro</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: sans-serif; background: #1a1a1a; color: white; padding: 20px; }
+        #chat-box { height: 300px; border: 1px solid #444; overflow-y: scroll; padding: 10px; margin-bottom: 10px; background: #222; }
+        input { width: 80%; padding: 10px; }
+        button { padding: 10px; background: #007bff; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>🤖 Not-Neuro Web Console</h2>
+    <div id="chat-box"></div>
+    <input type="text" id="user-input" placeholder="Nhập tin nhắn...">
+    <button onclick="sendMessage()">Gửi</button>
+
+    <script>
+        // Biến typeWriter thành Promise để có thể "await" (đợi) nó gõ xong
+        function typeWriter(element, text, speed = 15) {
+            return new Promise((resolve) => {
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    } else {
+                        resolve(); // Báo hiệu đã gõ xong
+                    }
+                }
+                type();
+            });
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('user-input');
+            const chatBox = document.getElementById('chat-box');
+            const message = input.value;
+            if (!message) return;
+
+            // Hiển thị tin nhắn của bạn
+            const userDiv = document.createElement('p');
+            userDiv.innerHTML = `<b>Bạn:</b> ${message}`;
+            chatBox.appendChild(userDiv);
+            input.value = '';
+
+            // Gửi yêu cầu POST đến Server Flask của bạn
+            const response = await fetch('http://127.0.0.1:5000/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+            if (data.status === 'success') {
+                const msgDiv = document.createElement('p');
+                msgDiv.innerHTML = `<b>Not-Neuro:</b> `;
+                chatBox.appendChild(msgDiv);
+                
+                // Đợi gõ xong xuôi mới làm việc tiếp theo
+                await typeWriter(msgDiv, data.display_text);
+
+                // 4. Thêm Mood Bar bằng appendChild để không làm hỏng chữ đã gõ
+                const moodDiv = document.createElement('p');
+                moodDiv.innerHTML = `<small style="color: #888;">${data.mood_bar}</small>`;
+                chatBox.appendChild(moodDiv);
+
+            } else {
+                const errorDiv = document.createElement('p');
+                errorDiv.style.color = "red";
+                errorDiv.innerHTML = `<p style="color: red;">Lỗi: ${data.message}</p>`;
+                chatBox.appendChild(errorDiv);
+            }
+
+            // Cuộn xuống cuối
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>

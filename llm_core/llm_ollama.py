@@ -2,7 +2,7 @@ import json
 import asyncio
 
 import ollama 
-from llm_base import BaseLLM
+from .llm_base import BaseLLM
 
 class OllamaClient(BaseLLM):
     def __init__(self, model_name="qwen3:4b"): # Hoặc gemma, qwen tùy bạn cài

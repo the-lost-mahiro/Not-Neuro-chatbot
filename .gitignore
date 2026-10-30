@@ -1,13 +1,11 @@
 .env
 .venv/
+.idea/
 __pycache__/
 memory.json
 character_background.txt
 check_names.py
-test_client.py
 vts_token.txt
 *.mp3
-index.html
 .agent
-old_brain.py
-eye.py
+vision.jpg
